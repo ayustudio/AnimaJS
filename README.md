@@ -1,9 +1,36 @@
 # AnimaJS
 
-AnimaJS is a lightweight, high-performance animation library for modern web applications. It provides a simple yet powerful API for creating complex animations with ease.
+AnimaJS is a lightweight, high-performance animation library for modern web applications. Inspired by popular libraries like Anime.js, AnimaJS offers a streamlined API with powerful features and optimized performance.
 
 [![npm version](https://badge.fury.io/js/animajs.svg)](https://badge.fury.io/js/animajs)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+
+## Table of Contents
+
+- [Features](#features)
+- [Installation](#installation)
+- [Usage](#usage)
+  - [ES Module](#es-module)
+  - [CommonJS](#commonjs)
+  - [Script Tag](#script-tag)
+- [Basic Examples](#basic-examples)
+  - [Simple Animation](#simple-animation)
+  - [Timeline Animation](#timeline-animation)
+  - [CSS Variable Animation](#css-variable-animation)
+  - [Responsive Animation](#responsive-animation)
+  - [Web Animations API](#web-animations-api)
+- [API Reference](#api-reference)
+  - [AnimaJS.animate(options)](#animajsanimateoptions)
+  - [AnimaJS.timeline()](#animajstimeline)
+  - [AnimaJS.cssVariable(options)](#animajscssvariableoptions)
+  - [AnimaJS.responsive(options)](#animajsresponsiveoptions)
+  - [AnimaJS.webAnimation(options)](#animajswebanimationoptions)
+  - [AnimaJS.css](#animajscss)
+  - [AnimaJS.Easing](#animajseasing)
+- [Build Process](#build-process)
+- [Browser Compatibility](#browser-compatibility)
+- [Contributing](#contributing)
+- [License](#license)
 
 ## Features
 
@@ -15,6 +42,7 @@ AnimaJS is a lightweight, high-performance animation library for modern web appl
 - 📱 Responsive animations with breakpoint support
 - 🌐 Web Animations API integration
 - 🎛️ Flexible easing functions
+- 🧩 Extensible plugin system
 
 ## Installation
 
@@ -128,6 +156,113 @@ AnimaJS.cssVariable({
 }).start();
 ```
 
+### Responsive Animation
+
+```javascript
+AnimaJS.responsive({
+  element: document.querySelector('.box'),
+  duration: 1000,
+  properties: { width: { from: 100, to: 300 } },
+  breakpoints: {
+    '768': { properties: { width: { from: 100, to: 200 } } },
+    '1024': { properties: { width: { from: 100, to: 400 } } }
+  }
+});
+```
+
+### Web Animations API
+
+```javascript
+const animation = AnimaJS.webAnimation({
+  element: document.querySelector('.box'),
+  keyframes: [
+    { transform: 'translateX(0px)' },
+    { transform: 'translateX(300px)' }
+  ],
+  timing: {
+    duration: 1000,
+    easing: 'ease-in-out',
+    iterations: Infinity
+  }
+});
+
+animation.play();
+```
+
+## API Reference
+
+### AnimaJS.animate(options)
+
+Creates a new animation instance.
+
+- `options.element`: The DOM element to animate
+- `options.duration`: Duration of the animation in milliseconds
+- `options.properties`: An object defining the properties to animate
+- `options.easing`: Easing function (default: linear)
+- `options.onUpdate`: Callback function called on each animation frame
+- `options.onComplete`: Callback function called when animation completes
+
+### AnimaJS.timeline()
+
+Creates a new timeline for sequencing animations.
+
+Methods:
+- `add(animation, offset)`: Adds an animation to the timeline
+- `play()`: Starts playing the timeline
+- `pause()`: Pauses the timeline
+- `seek(time)`: Seeks to a specific time in the timeline
+
+### AnimaJS.cssVariable(options)
+
+Animates a CSS custom property.
+
+- `options.element`: The element to apply the CSS variable to
+- `options.variable`: The name of the CSS variable
+- `options.from`: The starting value
+- `options.to`: The ending value
+- `options.duration`: Duration of the animation in milliseconds
+
+### AnimaJS.responsive(options)
+
+Creates a responsive animation that adapts to different breakpoints.
+
+- `options.element`: The element to animate
+- `options.duration`: Default duration of the animation
+- `options.properties`: Default properties to animate
+- `options.breakpoints`: An object defining different animation properties for various screen widths
+
+### AnimaJS.webAnimation(options)
+
+Creates an animation using the Web Animations API.
+
+- `options.element`: The element to animate
+- `options.keyframes`: An array of keyframe objects
+- `options.timing`: Timing options for the animation
+
+### AnimaJS.css
+
+A collection of CSS-specific animation utilities.
+
+Methods:
+- `transform(element, properties, progress)`: Applies CSS transforms
+- `color(element, property, from, to, progress)`: Animates color properties
+- `transition(element, properties, duration, easing)`: Creates CSS transitions
+- `keyframes(element, keyframes, options)`: Creates keyframe animations
+
+### AnimaJS.Easing
+
+An object containing various easing functions:
+
+- `linear`
+- `easeInQuad`, `easeOutQuad`, `easeInOutQuad`
+- `easeInCubic`, `easeOutCubic`, `easeInOutCubic`
+- `easeInQuart`, `easeOutQuart`, `easeInOutQuart`
+- `easeInQuint`, `easeOutQuint`, `easeInOutQuint`
+- `easeInSine`, `easeOutSine`, `easeInOutSine`
+- `easeInExpo`, `easeOutExpo`, `easeInOutExpo`
+- `easeInCirc`, `easeOutCirc`, `easeInOutCirc`
+- `easeInElastic`, `easeOutElastic`, `easeInOutElastic`
+
 ## Build Process
 
 AnimaJS uses Webpack for building and bundling. Here are the available npm scripts:
@@ -142,13 +277,17 @@ AnimaJS uses Webpack for building and bundling. Here are the available npm scrip
 
 AnimaJS supports all modern browsers (Chrome, Firefox, Safari, Edge) and IE11+.
 
-## Documentation
-
-For full documentation, visit our [GitHub Wiki](https://github.com/yourusername/animajs/wiki).
-
 ## Contributing
 
-We welcome contributions! Please see our [Contributing Guide](CONTRIBUTING.md) for more details.
+We welcome contributions to AnimaJS! Please follow these steps to contribute:
+
+1. Fork the repository
+2. Create a new branch: `git checkout -b feature/your-feature-name`
+3. Make your changes and commit them: `git commit -m 'Add some feature'`
+4. Push to the branch: `git push origin feature/your-feature-name`
+5. Submit a pull request
+
+Please make sure to update tests as appropriate and adhere to the existing coding style.
 
 ## License
 
